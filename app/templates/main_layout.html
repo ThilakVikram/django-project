@@ -1,0 +1,49 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <title>{% block title %}title comes here{% endblock %}</title>
+    {% block scripts %}<script>
+        // script comes here
+    </script>{% endblock  %}
+    <style>
+        select{
+            appearance: none;
+        }
+    </style>
+</head>
+<body class="h-screen w-screen flex flex-col">
+    <script>
+        function closeopensidebar(){
+            let sidebar = document.getElementById("sidebarmain");
+            let isclose = sidebar.classList.contains("-left-96")
+            let isopen = sidebar.classList.contains("left-0")
+            if(isclose && !isopen){
+                sidebar.classList.add("left-0")
+                sidebar.classList.remove("-left-96")
+            }
+            else{
+                sidebar.classList.add("-left-96")
+                sidebar.classList.remove("left-0")
+            }
+        }
+    </script>
+    <div id="sidebarmain" class="fixed -left-96 top-0 h-full w-120 z-30 flex flex-row duration-1000">
+        <div class="h-full w-96 bg-white pointer-events-auto shadow-xl"></div>
+        <div class="h-24 aspect-square pointer-events-auto p-3 absolute -right-24">
+            <div class="h-full aspect-square rounded-full bg-white" onclick="closeopensidebar()"></div>
+        </div>
+    </div>
+    <div class="max-h-24 w-full bg-violet-500 flex-1 shadow-xl z-10"></div>
+    <div class="flex-1">
+        <div id="maininnerbody" class="w-full h-full overflow-hidden"></div>
+    </div>
+</body>
+</html>

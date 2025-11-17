@@ -1,15 +1,8 @@
-let root = ReactDOM.createRoot(document.getElementById("root"))
-root.render(<App />)
+let root = ReactDOM.createRoot(document.getElementById("maininnerbody"))
+root.render(<App/>)
 
-function App() {
-    return <div className="w-full h-full p-3">
-        <h1>Add Member</h1>
-        <FormView />
+function App(){
+    return <div className="h-full w-full p-3">
+        <div></div>
     </div>
-}
-
-function FormView() {
-    return <form method="post">
-        <input className="h-full border-2 text-xl p-3 rounded-xl"></input>
-    </form>
 }
