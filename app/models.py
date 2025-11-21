@@ -15,32 +15,7 @@ class Member(models.Model):
     def __str__(self):
         return self.memberid
     def getStructure(self):
-        return {
-            "name":{
-                "type":"text",
-                "name":"Member ID"
-                },
-            "contactno":{
-                "type":"text",
-                "name":"Contact Number"
-                },
-            "email":{
-                "type":"text",
-                "name":"Email Address"
-                },
-            "address":{
-                "type":"multiline",
-                "name":"Address"
-                },
-            "area":{
-                "type":"text",
-                "name":"Member ID"
-                },
-            "joineddate":{
-                "type":"date",
-                "name":"Joined Date"
-                }
-        }
+        return ["name","contactno","email","address","area","joineddate"]
     
 class Membership(models.Model):
     class MemberShipPeriod(models.IntegerChoices):
@@ -58,31 +33,7 @@ class Membership(models.Model):
     createddate = models.DateTimeField(null=False)
     
     def getStructure(self):
-        return {
-            "name":{
-                "type":"text",
-                "name":"Membership Name"
-                },
-            "periodinmonth":{
-                "type":"choice",
-                "name":"Period In Month",
-                "choice":[
-                    {"value":"1","name":"One Month"},
-                    {"value":"3","name":"Three Month"},
-                    {"value":"6","name":"Six Month"},
-                    {"value":"9","name":"Nine Month"},
-                    {"value":"12","name":"Twelve Month - (Year)"},
-                ]
-                },
-            "amountininr":{
-                "type":"number",
-                "name":"Amount"
-                },
-            "createddate":{
-                "type":"date",
-                "name":"Created Date"
-                }
-        }
+        return ["id","name","periodinmonth","amountininr","createddate"]
     
 class Purchase(models.Model):
     class Meta:
@@ -94,28 +45,7 @@ class Purchase(models.Model):
     date = models.DateTimeField(auto_now_add=True)
     
     def getStructure(self,memberid = None,membershipid = None):
-        return {
-            "purchaseid":{
-                "type":"",
-                "name":""
-                },
-            "memberid":{
-                "type":"",
-                "name":""
-                },
-            "membershipid":{
-                "type":"",
-                "name":""
-                },
-            "amount":{
-                "type":"",
-                "name":""
-                },
-            "date":{
-                "type":"",
-                "name":""
-                }
-        }
+        return ["id","memberid","membershipid","amount"]
     
 class Payment(models.Model):
     class Meta:
@@ -126,12 +56,7 @@ class Payment(models.Model):
     date = models.DateTimeField(auto_now_add=True)
     
     def getStructure(self):
-        return {
-            "paymentid":"id",
-            "purchaseid":"id",
-            "amount":"currency",
-            "date":"date"
-        }
+        return ["purchaseid","amount","date"]
     
 class Fitness(models.Model):
     class Meta:
@@ -144,11 +69,4 @@ class Fitness(models.Model):
     date = models.DateTimeField(auto_now_add=True)
     
     def getStructure(self):
-        return {
-            "fitnessid":"id",
-            "memberid":"id",
-            "height":"int",
-            "weight":"int",
-            "bmi":"int",
-            "date":"date"
-        }
+        return ["memberid","height","weight","bmi","date"]

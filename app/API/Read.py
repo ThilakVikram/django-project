@@ -7,5 +7,8 @@ def GetFields(req,model):
     return JsonResponse(structure,safe=False)
 
 def GetNameandPK(req,model,search):
+    if(search == "_all"):
+        # models.Member.objects.all().values()
+        return JsonResponse(list(getattr(models,model).objects.all().values("id","name"))[:20],safe=False)
     data = list(getattr(models,model).objects.filter(Q(name__istartswith=search.lower())|Q(id__istartswith=search)).values("id","name").order_by("name"))
     return JsonResponse(data[:5],safe=False)
